@@ -207,11 +207,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#테이블" id="toc-테이블" class="nav-link" data-scroll-target="#테이블"><span class="header-section-number">3.6</span> 테이블</a></li>
   <li><a href="#yaml-헤더" id="toc-yaml-헤더" class="nav-link" data-scroll-target="#yaml-헤더"><span class="header-section-number">3.7</span> YAML 헤더</a></li>
   <li><a href="#output-format" id="toc-output-format" class="nav-link" data-scroll-target="#output-format"><span class="header-section-number">3.8</span> Output format</a></li>
-  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">3.9</span> 연습문제</a>
-  <ul class="collapse">
-  <li><a href="#연습문제-1-기본-html-문서-생성" id="toc-연습문제-1-기본-html-문서-생성" class="nav-link" data-scroll-target="#연습문제-1-기본-html-문서-생성"><span class="header-section-number">3.9.1</span> 연습문제 1: 기본 HTML 문서 생성</a></li>
-  <li><a href="#연습문제-2-슬라이드-쇼-생성" id="toc-연습문제-2-슬라이드-쇼-생성" class="nav-link" data-scroll-target="#연습문제-2-슬라이드-쇼-생성"><span class="header-section-number">3.9.2</span> 연습문제 2: 슬라이드 쇼 생성</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -451,24 +446,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="output-format" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="output-format"><span class="header-section-number">3.8</span> Output format</h2>
 <p>Quarto의 output format 설정은 사용자가 만드는 문서의 종류와 필요에 맞게 유연하게 조정할 수 있으며, 이를 통해 다양한 형식의 고품질 문서를 생성할 수 있습니다. Quarto 문서에 대한 보다 자세한 정보는 <a href="https://quarto.org/docs/guide/">Quarto 공식 문서</a>에서 확인할 수 있습니다.</p>
-</section>
-<section id="연습문제" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">3.9</span> 연습문제</h2>
-<section id="연습문제-1-기본-html-문서-생성" class="level3" data-number="3.9.1">
-<h3 data-number="3.9.1" class="anchored" data-anchor-id="연습문제-1-기본-html-문서-생성"><span class="header-section-number">3.9.1</span> 연습문제 1: 기본 HTML 문서 생성</h3>
-<p>Quarto를 사용하여 간단한 HTML 문서를 생성합니다. 이 문서에는 자기 소개, 몇 개의 섹션, 그리고 R 코드 청크가 포함되어야 합니다.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>기본 HTML 문서 생성. Quarto를 사용하여 간단한 HTML 문서를 생성합니다. 이 문서에는 자기 소개, 몇 개의 섹션, 그리고 R 코드 청크가 포함되어야 합니다.</li>
+</ol>
 <ul>
-<li><p>새 Quarto 문서 생성</p></li>
-<li><p>문서의 제목을 “My Quarto”로 설정</p></li>
-<li><p>YAML 헤더에 <strong><code>format: html</code></strong> 추가</p></li>
-<li><p>마크다운 언어로 자기소개 섹션과 데이터 분석 섹션 추가</p></li>
-<li><p>“데이터 분석” 섹션에 <strong><code>mtcars</code></strong> 데이터셋의 요약 통계를 보여주는 코드 청크를 포함</p>
-<pre><code>summary(mtcars)</code></pre></li>
+<li>새 Quarto 문서 생성</li>
+<li>문서의 제목을 “My Quarto”로 설정</li>
+<li>YAML 헤더에 <strong><code>format: html</code></strong> 추가</li>
+<li>마크다운 언어로 자기소개 섹션과 데이터 분석 섹션 추가</li>
+<li>“데이터 분석” 섹션에 <strong><code>mtcars</code></strong> 데이터셋의 요약 통계를 보여주는 코드 청크를 포함</li>
 </ul>
-</section>
-<section id="연습문제-2-슬라이드-쇼-생성" class="level3" data-number="3.9.2">
-<h3 data-number="3.9.2" class="anchored" data-anchor-id="연습문제-2-슬라이드-쇼-생성"><span class="header-section-number">3.9.2</span> 연습문제 2: 슬라이드 쇼 생성</h3>
-<p>Quarto를 사용하여 간단한 슬라이드 쇼를 생성합니다. 이 슬라이드 쇼에는 여러 개의 슬라이드와 최소 하나의 인터랙티브한 R 코드 청크가 포함되어야 합니다.</p>
+<ol start="2" type="1">
+<li>슬라이드 쇼 생성. Quarto를 사용하여 간단한 슬라이드 쇼를 생성합니다. 이 슬라이드 쇼에는 여러 개의 슬라이드와 최소 하나의 인터랙티브한 R 코드 청크가 포함되어야 합니다.</li>
+</ol>
 <ul>
 <li><p>새 Quarto 문서를 생성하고 파일 이름을 “슬라이드 쇼 연습”으로 설정</p></li>
 <li><p>YAML 헤더에 <strong><code>format: revealjs</code></strong> 추가</p></li>
@@ -478,11 +478,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ggplot(mtcars, aes(x=cyl, y=mpg)) + geom_point()</code></pre></li>
 <li><p>세 번째 슬라이드에는 결론 및 요약 포함</p></li>
 </ul>
+</div>
+</div>
 <hr>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" alt="크리에이티브 커먼즈 라이선스" style="border-width:0"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

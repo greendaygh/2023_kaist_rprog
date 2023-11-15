@@ -307,11 +307,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">alphabetFrequency</span>(x1, <span class="at">baseOnly=</span><span class="cn">TRUE</span>, <span class="at">as.prob=</span><span class="cn">TRUE</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">letterFrequency</span>(x1, <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"C"</span>), <span class="at">as.prob=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercises</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>개시코돈과 스탑코돈을 포함한 30개 길이를 갖는 랜덤 유전자서열을 하나 만드시오</p></li>
 <li><p>AA_ALPHABET은 IUPAC에서 정의된 아미노산 서열 알파벳이 저장된 내장변수임. “M”과 “*”를 포함하는 10개 길이를 갖는 랜덤 유전자서열을 하나 만드시오</p></li>
 </ol>
+</div>
+</div>
 </section>
 <section id="xstringset" class="level3" data-number="8.2.2">
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="xstringset"><span class="header-section-number">8.2.2</span> XStringSet</h3>
@@ -350,13 +361,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">AAStringSet</span>(<span class="fu">c</span>(x1, x2))</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">AAStringSet</span>(<span class="fu">c</span>(x3, x4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercises</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li>시작코돈과 종결코돈이 있는 길이 36bp 짜리 DNA (랜덤) 서열을 하나 만드시오</li>
 </ol>
 <ol start="2" type="1">
 <li>위와 같은 랜덤서열 10개 만들어서 DNAStringSet으로 변환하시오</li>
 </ol>
+</div>
+</div>
 <p>아래는 가장 직관적으로 생각할 수 있는 <code>for</code>를 이용한 방법입니다. 즉, 10개 저장소를 갖는 x0 변수를 미리 생성해 두고 for 문을 돌면서 서열을 하나씩 만들어 저장하는 방법입니다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">""</span>, <span class="dv">10</span>)</span>
@@ -437,10 +459,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">successiveViews</span>(x2, <span class="at">width=</span><span class="fu">rep</span>(<span class="dv">20</span>, <span class="dv">2</span>))</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">successiveViews</span>(x2, <span class="at">width=</span><span class="fu">rep</span>(<span class="dv">20</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercises</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li>1000bp 길이의 랜덤 DNA 서열을 만들고 40bp 단위의 길이로 보는 코드를 작성하시오.</li>
 </ol>
+</div>
+</div>
 <p>앞서 만들어둔 <code>random_dna()</code> 함수를 사용하면 되며 <code>successiveViews</code> 함수를 사용해야 하므로 <code>DNAString</code>으로 변환이 필요하며 서열의 길이에 따라서 <code>rep()</code> 를 이용하여 반복 횟수를 자동 계산합니다.</p>
 </section>
 </section>
@@ -528,10 +561,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>mydat</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>AMINO_ACID_CODE[mydat<span class="sc">$</span>codon]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercises</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li><code>AMINO_ACID_CODE</code>를 이용해서 위 그래프의 1약자를 3약자로 변환, 라벨을 세로로 90도 회전, y축 라벨 “Frequency”, x축 라벨 “Amino acid code”, theme 옵션 “theme_bw” 등을 적용하여 다시 그림을 그리시오 (revisit ggplot2)</li>
 </ol>
+</div>
+</div>
 </section>
 <section id="pattern-matching" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="pattern-matching"><span class="header-section-number">8.5</span> Pattern matching</h2>
