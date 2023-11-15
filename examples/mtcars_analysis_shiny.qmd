@@ -1,0 +1,77 @@
+---
+title: "Exploring the mtcars Dataset with Shiny"
+format: 
+  html: 
+    toc: true
+    shiny: true
+---
+
+# Introduction
+
+The `mtcars` dataset in R contains data extracted from the 1974 Motor Trend US magazine. This analysis aims to explore the relationship between a car's fuel efficiency (mpg) and its weight (wt).
+
+# Data Summary
+
+Let's first take a look at the structure and the first few rows of the dataset.
+
+```{r}
+# Display the structure
+str(mtcars)
+
+# Display the first few rows
+head(mtcars)
+```
+
+# Data Visualization
+
+We will now create a scatter plot to visualize the relationship between `mpg` and `wt`.
+
+```{r}
+library(ggplot2)
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Scatter Plot of MPG vs Car Weight",
+       x = "Weight of the Car",
+       y = "Miles per Gallon")
+```
+
+# Statistical Summary
+
+Here's a statistical summary of the `mtcars` dataset.
+
+```{r}
+summary(mtcars)
+```
+
+# Conclusion
+
+From the scatter plot, we observe a negative relationship between the weight of the car and its fuel efficiency. As the weight increases, the miles per gallon tend to decrease.
+
+------------------------------------------------------------------------
+
+# Extra Challenge: Interactive Element with Shiny
+
+```{r}
+library(shiny)
+
+# UI for the slider
+sliderInput("mpgRange", "Select MPG Range:",
+            min = min(mtcars$mpg),
+            max = max(mtcars$mpg),
+            value = c(min(mtcars$mpg), max(mtcars$mpg)))
+
+# Server logic for plot output
+output$mpgPlot <- renderPlot({
+    filtered <- mtcars[mtcars$mpg >= input$mpgRange[1] & mtcars$mpg <= input$mpgRange[2], ]
+    ggplot(filtered, aes(x = wt, y = mpg)) +
+      geom_point() +
+      labs(title = paste("Scatter Plot of MPG vs Car Weight for MPG range:", 
+                         input$mpgRange[1], "-", input$mpgRange[2]),
+           x = "Weight of the Car",
+           y = "Miles per Gallon")
+})
+
+# Render the plot
+plotOutput("mpgPlot")
+```

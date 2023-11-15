@@ -1,0 +1,23 @@
+---
+title: "Course introduction"
+---
+
+## 소개
+
+카이스트 공학생물학 대학원 강의용 강의노트 (2023.11)
+
+## 목차
+
+-   [Chapter 1: Introduction](01-intro.qmd)
+-   [Chapter 2: Quarto and Markdown](02-markdown.qmd)
+
+## 데이터 분석
+
+![from https://r4ds.had.co.nz/](images/07/data-science.png){width="544"}
+
+posit의 대표적 개발자인 해들리위컴은 `R for Data Science`의 서두에 위와 같은 그림으로 데이터과학을 설명하고 있습니다. 원본 데이터는 Tidy 형태로 R로 불러와야 하고 언제든 분석에 맞는 형태로 `변형` 할 수 있어야 합니다. 그리고 항상 `시각화`를 통해 데이터를 직접 검증해야하고 `모델`을 사용해서 원하는 분석을 수행합니다. 분석 후에는 `공유`를 통해 객관적인 검증이 필요합니다. R은 이 모든 과정을 빠르고 효율적으로 수행할 수 있는 최고의 언어입니다. 데이터과학 입장에서는 위 도구들을 둘러싸고 있는것이 `프로그래밍` 입니다. 
+
+
+## 라이선스
+
+이 책은 Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) 라이선스에 따라 제공됩니다.

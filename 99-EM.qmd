@@ -1,0 +1,162 @@
+---
+title: "GAN"
+eval: false
+format: 
+  html: 
+    code-overflow: wrap
+---
+
+## Generative model
+
+관측값 X, 모형 P(x;th), Estimate theta, best fit X
+
+동전 던저서 앞 뒤 분포, 어떤 분포가 더 가까운가?
+
+주사위 던저서 그래프 나왔는데 p1, p2, p3, ...
+
+Defining "Best Fit": Maximum likelihood
+
+앞에서 배웠던 데이터를 저장하는 object의 종류를 먼저 간략히 정리해 봅니다.
+
+
+-------------------
+
+https://juliasilge.com/blog/multinomial-volcano-eruptions/
+
+
+Multinomical classification
+
+
+```{r}
+library(tidyverse)
+volcano_raw <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/volcano.csv")
+
+volcano_raw  |> 
+  count(primary_volcano_type, sort = TRUE)
+
+
+```
+
+
+- new variable
+
+```{r}
+volcano_df <- volcano_raw |> 
+  transmute(volcano_type =  case_when(str_detect(primary_volcano_type, "Stratovolcano") ~ "Stratovolcano",
+                    str_detect(primary_volcano_type, "Shield") ~ "Shield", 
+                    TRUE ~ "Other"),
+            volcano_number,
+            latitude,
+            longitude,
+            elevation,
+            tectonic_settings,
+            major_rock_1) |> 
+  mutate_if(is.character, factor)
+
+volcano_df  
+
+volcano_df |> count(volcano_type)
+
+```
+
+volcano_type의 Shield가 많이 작은 상황으로 다음과 같은 문제점이 발생할 수 있음.
+먼저, 다항 분류(multinomial classification)에서는 여러 클래스(범주) 중 하나로 데이터를 분류합니다. 만약 어떤 클래스에 속하는 데이터의 수가 상대적으로 적다면, 이는 데이터 불균형(data imbalance) 문제로 이어질 수 있습니다. 데이터 불균형은 분류 모델의 성능에 여러 가지 영향을 미칠 수 있습니다:
+
+과적합(Overfitting)의 위험성 증가: 모델이 소수 클래스의 적은 데이터 포인트에 과하게 최적화될 수 있으며, 이는 일반화 능력을 저하시킬 수 있습니다.
+
+분류 성능 저하: 모델이 다수 클래스에 편향되어, 소수 클래스를 제대로 분류하지 못하는 문제가 발생할 수 있습니다. 이는 정확도(accuracy), 정밀도(precision), 재현율(recall) 등 다양한 성능 지표에 부정적인 영향을 줄 수 있습니다.
+
+평가 지표의 오해: 모델이 다수 클래스를 잘 분류하더라도, 소수 클래스의 분류 성능이 떨어질 수 있어, 전체적인 모델 성능 평가에 오류를 줄 수 있습니다.
+
+이러한 문제를 해결하기 위한 몇 가지 전략은 다음과 같습니다:
+
+재샘플링(Resampling) 기법 사용: 소수 클래스의 데이터를 오버샘플링(over-sampling)하거나 다수 클래스의 데이터를 언더샘플링(under-sampling)하여, 클래스 간 균형을 맞추는 방법입니다.
+
+가중치 부여(Weighting): 소수 클래스의 데이터에 더 큰 가중치를 부여하여, 모델 학습 과정에서 이들에 더 많은 주의를 기울이도록 하는 방법입니다.
+
+고급 알고리즘 사용: 데이터 불균형에 더 강건한 알고리즘들, 예를 들어 랜덤포레스트(Random Forest)나 그라디언트 부스팅(Gradient Boosting) 등을 사용할 수 있습니다.
+
+
+```{r}
+library(ggplot2)
+world <- map_data("world")
+
+ggplot() +
+  geom_map(data = world,
+           map = world,
+           aes(long, lat, map_id = region),
+           color = "white", fill = "gray50", alpha = 0.2) +
+  geom_point(data = volcano_df, 
+             aes(longitude, latitude, color = volcano_type),
+             alpha = 0.8)
+
+
+```
+
+## Build a model
+
+- minority class oversampling위해서 step_smote 사용
+- step_smote 사용하기 위해서 numeric dummy로 만들어주고 정규화 필요함
+- 더미 변수는 대부분의 기계학습 알고리즘은 범주형 변수를 다룰 때 숫자형 데이터를 요구함. 정규화는 변수간 스케일 차이로 발생할 수 있는 학습의 편향을 줄이고 모델의 수렴 속도와 성능을 향상시킴. 
+
+오버샘플링 기법인 SMOTE(Synthetic Minority Over-sampling Technique)를 사용하기 전에 이러한 단계를 거치는 것은 중요합니다. SMOTE는 소수 클래스의 데이터 포인트를 새롭게 생성하는데, 이 과정에서 더미 변수와 정규화된 데이터를 사용하면 보다 일관되고 효과적인 샘플 생성이 가능합니다. 범주형 변수가 더미 변수로 변환되지 않으면 SMOTE는 이러한 변수를 올바르게 처리하지 못할 수 있으며, 정규화되지 않은 데이터는 변수 간의 스케일 차이로 인해 오버샘플링의 효과가 감소할 수 있습니다.
+
+
+```{r}
+library(themis)
+library(tidymodels)
+
+volcano_boot <- bootstraps(volcano_df)
+volcano_boot
+
+?step_smote
+
+volcano_rec <- recipe(volcano_type ~., data = volcano_df) |> 
+  update_role(volcano_number, new_role = "Id") |> 
+  step_other(tectonic_settings) |> 
+  step_other(major_rock_1) |> 
+  step_dummy(tectonic_settings, major_rock_1) |> 
+  step_zv(all_predictors()) |> 
+  step_normalize(all_predictors()) |> 
+  step_smote(volcano_type)
+
+volcano_prep <- prep(volcano_rec)
+juice(volcano_prep)
+
+```
+
+```{r}
+juice(volcano_prep) |> count(volcano_type)
+```
+
+## model 
+
+- 충분한 tree가 있다면 트별히 tuning 할 필요 없음
+- 워크플로는 재료 모델을 모아줌 사용하기 쉽도록 
+
+```{r}
+library(ranger)
+rf_spec <- rand_forest(trees = 1000) |> 
+  set_mode("classification") |> 
+  set_engine("ranger")
+
+volcano_wf <- workflow() |> 
+  add_recipe(volcano_rec) |> 
+  add_model(rf_spec)
+
+volcano_res <- fit_resamples(
+  volcano_wf,
+  resamples = volcano_boot,
+  control = control_resamples(save_pred = T, verbose = T)
+)
+```
+
+
+
+
+
+
+- 
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" alt="크리에이티브 커먼즈 라이선스" style="border-width:0"/></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.

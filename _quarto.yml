@@ -1,0 +1,66 @@
+project:
+  type: book
+  output-dir: _book
+  preview:
+    browser: false
+
+book:
+  title: "R Programming for Engineering Biology (EB501, KAIST 2023)"
+  reader-mode: true
+  author: "Haseong Kim"
+  date: "11/10/2023"
+  page-footer:
+    left: |
+        2023 lecture note written by Haseong Kim
+    right: |
+        This book was built with <a href="https://quarto.org/">Quarto</a>.
+  chapters:
+    - index.qmd
+    - 01-intro.qmd
+    - 02-markdown.qmd
+    - 03-r-programming.qmd
+    - 04-data-transformation-classic.qmd
+    - 05-data-transformation-tidyverse.qmd
+    - 06-bioconductor.qmd
+    - 07-Biostrings.qmd
+
+format:
+  html:
+    toc: true
+    author-meta: "Haseong"
+    theme: 
+      - cosmo
+  # pdf:
+  #   latex-engine: xelatex
+  #   keep-tex: true
+  #   mainfont: "NanumBarunGothic.otf"
+  #   sansfont: "NanumBarunGothic.otf"
+  #   monofont: "NanumBarunGothic.otf"
+  #   papersize: a4
+  #   documentclass: book
+  #   geometry: [tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm]
+  #   header-includes: |
+  #    \usepackage{kotex}
+
+editor: "visual"
+
+chapters:
+  - "index.qmd"
+  - "01-intro.qmd"
+  - "02-markdown.qmd"
+  - "03-r-programming.qmd"
+  - "04-data-transformation-classic.qmd"
+  - "05-data-transformation-tidyverse.qmd"
+  - "06-bioconductor.qmd"
+  - "07-Biostrings.qmd"
+
+
+
+resources:
+  - images
+
+
+bibliography: references.bib
+
+locale: ko-KR
+
