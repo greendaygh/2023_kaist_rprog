@@ -453,7 +453,7 @@ unlist(lapply(y, myfunc))
 
 즉, `myfunc`의 `x`가 list y의 각 원소들, y\[\[1\]\], y\[\[2\]\], y\[\[3\]\]를 각각 받아서 `mean` 연산을 수행해 줍니다. 결과로 각 `list` 원소들의 평균 값이 반환되며 `unlist` 함수는 `list` 형태의 반환 값을 `vector` 형태로 전환해 줍니다.
 
-## purrr 
+## purrr
 
 TODO
 
