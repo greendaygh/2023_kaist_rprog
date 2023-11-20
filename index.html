@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course introduction</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">EB501</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">EB501</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -155,6 +155,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Biostrings</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-toolsforsequences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tools for sequences</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -166,9 +172,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#소개" id="toc-소개" class="nav-link active" data-scroll-target="#소개"><span class="header-section-number">0.1</span> 소개</a></li>
-  <li><a href="#목차" id="toc-목차" class="nav-link" data-scroll-target="#목차"><span class="header-section-number">0.2</span> 목차</a></li>
-  <li><a href="#데이터-분석" id="toc-데이터-분석" class="nav-link" data-scroll-target="#데이터-분석"><span class="header-section-number">0.3</span> 데이터 분석</a></li>
-  <li><a href="#라이선스" id="toc-라이선스" class="nav-link" data-scroll-target="#라이선스"><span class="header-section-number">0.4</span> 라이선스</a></li>
+  <li><a href="#데이터-분석" id="toc-데이터-분석" class="nav-link" data-scroll-target="#데이터-분석"><span class="header-section-number">0.2</span> 데이터 분석</a></li>
+  <li><a href="#라이선스" id="toc-라이선스" class="nav-link" data-scroll-target="#라이선스"><span class="header-section-number">0.3</span> 라이선스</a></li>
   </ul>
 </nav>
     </div>
@@ -208,15 +213,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="0.1" class="anchored" data-anchor-id="소개"><span class="header-section-number">0.1</span> 소개</h2>
 <p>카이스트 공학생물학 대학원 강의용 강의노트 (2023.11)</p>
 </section>
-<section id="목차" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="목차"><span class="header-section-number">0.2</span> 목차</h2>
-<ul>
-<li><a href="./01-intro.html">Chapter 1: Introduction</a></li>
-<li><a href="./02-markdown.html">Chapter 2: Quarto and Markdown</a></li>
-</ul>
-</section>
-<section id="데이터-분석" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="데이터-분석"><span class="header-section-number">0.3</span> 데이터 분석</h2>
+<section id="데이터-분석" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="데이터-분석"><span class="header-section-number">0.2</span> 데이터 분석</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/07/data-science.png" class="img-fluid figure-img" width="544"></p>
@@ -225,8 +223,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>posit의 대표적 개발자인 해들리위컴은 <code>R for Data Science</code>의 서두에 위와 같은 그림으로 데이터과학을 설명하고 있습니다. 원본 데이터는 Tidy 형태로 R로 불러와야 하고 언제든 분석에 맞는 형태로 <code>변형</code> 할 수 있어야 합니다. 그리고 항상 <code>시각화</code>를 통해 데이터를 직접 검증해야하고 <code>모델</code>을 사용해서 원하는 분석을 수행합니다. 분석 후에는 <code>공유</code>를 통해 객관적인 검증이 필요합니다. R은 이 모든 과정을 빠르고 효율적으로 수행할 수 있는 최고의 언어입니다. 데이터과학 입장에서는 위 도구들을 둘러싸고 있는것이 <code>프로그래밍</code> 입니다.</p>
 </section>
-<section id="라이선스" class="level2" data-number="0.4">
-<h2 data-number="0.4" class="anchored" data-anchor-id="라이선스"><span class="header-section-number">0.4</span> 라이선스</h2>
+<section id="라이선스" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="라이선스"><span class="header-section-number">0.3</span> 라이선스</h2>
 <p>이 책은 Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) 라이선스에 따라 제공됩니다.</p>
 
 
