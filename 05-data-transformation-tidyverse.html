@@ -580,22 +580,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>conc_val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>newdat <span class="sc">|&gt;</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc_new =</span> conc_val[conc])</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="ot">&lt;-</span> newdat <span class="sc">|&gt;</span> </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc =</span> conc_val[conc]) <span class="sc">|&gt;</span> </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dupl =</span> <span class="fu">as.character</span>(dupl)) <span class="sc">|&gt;</span> </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor) </span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="sc">|&gt;</span> </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc, <span class="at">y=</span>od)) <span class="sc">+</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="sc">|&gt;</span> </span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc, <span class="at">y=</span>od, <span class="at">color=</span>sample)) <span class="sc">+</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>conc_val[<span class="dv">1</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>newdat <span class="sc">|&gt;</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc_new =</span> conc_val[conc])</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="ot">&lt;-</span> newdat <span class="sc">|&gt;</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc =</span> conc_val[conc]) <span class="sc">|&gt;</span> </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dupl =</span> <span class="fu">as.character</span>(dupl)) <span class="sc">|&gt;</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor) </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="sc">|&gt;</span> </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc, <span class="at">y=</span>od)) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="sc">|&gt;</span> </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc, <span class="at">y=</span>od, <span class="at">color=</span>sample)) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>growth data가 아님</li>
@@ -808,6 +809,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<ul>
+<li>96 플레이트 데이터를 읽고 각 반복에 대한 평균과 표준편차 계산</li>
+<li>샘플별로 농도별로 막대그래프 그리고 표준편차 표시</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -830,9 +835,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc_new =</span> conc_val[conc])</span>
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="ot">&lt;-</span> newdat <span class="sc">|&gt;</span> </span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc =</span> conc_val[conc]) <span class="sc">|&gt;</span> </span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conc =</span> <span class="fu">as.factor</span>(conc_val[conc])) <span class="sc">|&gt;</span> </span>
 <span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dupl =</span> <span class="fu">as.character</span>(dupl)) <span class="sc">|&gt;</span> </span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor) <span class="sc">|&gt;</span> </span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sample, conc) <span class="sc">|&gt;</span> </span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">m =</span> <span class="fu">mean</span>(gfp), <span class="at">s =</span> <span class="fu">sd</span>(gfp))</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>newdat2 <span class="sc">|&gt;</span> </span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>sample, <span class="at">y=</span>m, <span class="at">fill =</span> conc)) <span class="sc">+</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> m<span class="sc">-</span>s, <span class="at">ymax =</span> m<span class="sc">+</span>s), <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">padding =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
