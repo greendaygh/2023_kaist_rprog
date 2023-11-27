@@ -431,7 +431,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Bioconductor에서 제공하는 ExpressionSet 구조와 활용법을 이해한다</p>
+<ul>
+<li>Bioconductor에서 제공하는 ExpressionSet 구조와 활용법 이해</li>
+</ul>
 </div>
 </div>
 <p>Bioconductor는 지놈 데이터를 관리하기 위한 표준화된 데이터 구조 class인 <code>ExpressionSet</code>를 제공합니다. <code>ExpressionSet</code>은 HT assay 데이터와 실험 meta를 포함하고 있으며 앞에서 본 <code>GSE</code> 클래스 데이터를 읽어들일때 특정 옵션을 사용하면 <code>ExpressionSet</code> 클래스로 읽어올 수 있습니다.</p>
@@ -449,20 +451,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class=</span><span class="fu">class</span>(mygse))</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>mypdata <span class="ot">&lt;-</span> <span class="fu">pData</span>(mygse)</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>myfdata <span class="ot">&lt;-</span> <span class="fu">fData</span>(mygse)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>myexdata <span class="ot">&lt;-</span> <span class="fu">exprs</span>(mygse)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="do">## rownames , data.frame</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(myexdata)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="do">## filtering</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mypdata<span class="sc">$</span>description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>myexdata <span class="ot">&lt;-</span> <span class="fu">exprs</span>(mygse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mypdata</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(myexdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(myexdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>GDS2eSet</code> 함수를 사용하면 GDS 클래스 데이터를 ExpressionSet class로 변환할 수 있습니다.</p>
 <div class="cell">
@@ -473,145 +466,181 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pData</span>(eset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Example</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+카이스트 강의
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>DEG 실습 코드 이해</li>
+</ul>
+</div>
+</div>
 <p>다음 예제는 GEOquery 패키지에 있는 데이터셋을 활용하여 간단한 DEG 분석을 수행하는 코드로서 DEG 분석의 원리 이해와 해석을 위해 학습하는 예제입니다. 통계(추정과 검정)을 먼저 참고하고 실습해 보아도 좋겠습니다. 먼저 <code>ExpressionSeq</code>으로 변환하지 않고 tidyverse 패키지와 t-test를 활용해서 DEG를 수행합니다. 이 후 <code>ExpressionSeq</code>으로 변환 후 <code>DESeq2</code> 패키지를 사용하여 분석해보겠습니다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">filename =</span> <span class="fu">system.file</span>(<span class="st">"extdata/GDS507.soft.gz"</span>,<span class="at">package=</span><span class="st">"GEOquery"</span>))</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>gds</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>myexp <span class="ot">&lt;-</span> <span class="fu">Table</span>(gds)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>mypheno <span class="ot">&lt;-</span> <span class="fu">Columns</span>(gds)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(myexp)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mypheno)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(myexp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">filename =</span> <span class="fu">system.file</span>(<span class="st">"extdata/GDS507.soft.gz"</span>,<span class="at">package=</span><span class="st">"GEOquery"</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>gds</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>myexp <span class="ot">&lt;-</span> <span class="fu">Table</span>(gds)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>,]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>mypheno <span class="ot">&lt;-</span> <span class="fu">Columns</span>(gds)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(myexp)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mypheno)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(myexp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>샘플들 두 그룹별로 평균을 계산하기 위해서 matrix transpose가 필요합니다. tidyverse는 (대부분의 통계 데이터는) row에 샘플이 위치하고 column에 feature (변수)가 있는 반면 위 myexp는 특성상 샘플이 컬럼에 위치하므로 transpose 수행 후 평균을 계산할 필요가 있습니다. transpose는 long형으로 변환 후 다시 컬럼에 위치할 변수들을 지정해서 wide 형으로 변환하면 됩니다.</p>
+<p>샘플들 두 그룹별로 평균을 계산하기 위해서 우선 matrix transpose가 필요합니다. tidyverse는 (대부분의 통계 데이터는) row에 샘플이 위치하고 column에 feature (변수)가 있는 반면 위 myexp는 특성상 샘플이 컬럼에 위치하므로 transpose 수행 후 평균을 계산할 필요가 있습니다. transpose는 long형으로 변환 후 다시 컬럼에 위치할 변수들을 지정해서 wide 형으로 변환하면 됩니다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## transpose</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mydat_tr <span class="ot">&lt;-</span> myexp <span class="sc">|&gt;</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> rowname, <span class="at">values_from =</span> value)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>IDENTIFIER) <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>ID_REF) <span class="sc">|&gt;</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> ID_REF, <span class="at">values_from =</span> value)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>변환된 mydat_tr 데이터와 mypheno 데이터를 sample 이름을 기준으로 병합합니다.</p>
+<p>이제 샘플들이 가진 질병 정보를 변수로 추가해줍니다. 이를 위해서 질병 정보를 가진 mypheno 데이터와 mydat_tr을 sample 이름을 기준으로 병합합니다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mydat2 <span class="ot">&lt;-</span> mypheno <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sample, disease.state) <span class="sc">|&gt;</span> </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(mydat_tr, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"sample"</span> <span class="ot">=</span> <span class="st">"name"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이 후 그룹별로 평균을 계산후 다시 transpose 시켜줍니다.</p>
+<p>그룹별로 평균을 계산합니다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mydat2 <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mymean <span class="ot">&lt;-</span> mydat2 <span class="sc">|&gt;</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(disease.state) <span class="sc">|&gt;</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>mymean2 <span class="ot">&lt;-</span> mymean <span class="sc">|&gt;</span> </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>disease.state) <span class="sc">|&gt;</span> </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>disease.state, <span class="at">values_from =</span> value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>각 유전자별 평균값을 그래프로 분석하기 위해서는 normal, RCC가 변수로 되어야하기 때문에 메트리스를 transpose 시켜줍니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mymean2 <span class="ot">&lt;-</span> mymean <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>disease.state) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>disease.state, <span class="at">values_from =</span> value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>두 그룹의 평균 값에 대한 각 유전자(feature)들의 산포도를 그릴 수 있습니다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mymean2, <span class="fu">aes</span>(<span class="at">x=</span>normal, <span class="at">y=</span>RCC)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mymean2, <span class="fu">aes</span>(<span class="at">x=</span>normal, <span class="at">y=</span>RCC)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>위 데이터는 feature 별로 normal과 RCC 값들의 평균을 가지고 있습니다. 유사한 방법으로 표준편차 값을 구한 후 t값을 계산할 수 있으나 코드가 길어지게 됩니다. 기존 lecture에서는 apply 함수를 활용해서 t.test를 수행하여 p-value를 구할 수 있었으나 더 간단히 아래와 같이 tidyverse 타입의 함수를 사용해서 t.test 를 사용할 수도 있습니다.</p>
+<p>위 데이터는 feature 별로 normal과 RCC 값들의 평균을 가지고 있습니다. 이제 t-test를 통해 발현이 차이가 나는 유전자를 골라야 합니다. 위 평균을 구한 방법과 유사한 방법으로 표준편차 값을 구한 후 t값을 계산할 수 있으나 아래와 같이 tidyverse 타입의 함수를 사용해서 t.test 를 사용할 수도 있습니다. 일반적으로 R에서 t-test는 <code>t-test</code>라는 함수를 사용합니다.</p>
+<p><img src="images/image-543085632.png" class="img-fluid" width="589"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ttestval <span class="ot">&lt;-</span> mydat2 <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#dplyr::select(1:10) |&gt; </span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="cf">function</span>(x){</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x[disease.state<span class="sc">==</span><span class="st">"normal"</span>], x[disease.state<span class="sc">==</span><span class="st">"RCC"</span>])</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(z<span class="sc">$</span>p.value, z<span class="sc">$</span>statistic)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    }))</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>ttestval</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>평균값과 pvalue, tstatistic 등의 값들을 하나의 테이블로 만들기 위해서 위 ttestval 데이터를 transpose 시킨 후 mymean2 데이터와 병합합니다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ttestvalt <span class="ot">&lt;-</span> ttestval <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rnames =</span> <span class="fu">c</span>(<span class="st">"pvalue"</span>, <span class="st">"tstat"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#column_to_rownames(var="rnames") |&gt; </span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rnames) <span class="sc">|&gt;</span> </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> rnames)</span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ttestval <span class="ot">&lt;-</span> mydat2 <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="cf">function</span>(x){</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x[disease.state<span class="sc">==</span><span class="st">"normal"</span>], x[disease.state<span class="sc">==</span><span class="st">"RCC"</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(z<span class="sc">$</span>p.value, z<span class="sc">$</span>statistic)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    }))</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>finaldat <span class="ot">&lt;-</span> mymean2 <span class="sc">|&gt;</span> <span class="fu">left_join</span>(ttestvalt, <span class="at">by=</span><span class="st">"name"</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>finaldat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ttestval</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>유의한 데이터를 선별하고 가시화 합니다.</p>
+<p>이제 앞에서 만든 평균값 데이터와 pvalue, tstatistic 등의 값들을 하나의 테이블로 만들기 위해서 위 ttestval 데이터를 transpose 시킨 후 mymean2 데이터와 병합합니다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sigdat <span class="ot">&lt;-</span> finaldat <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pvalue <span class="sc">&lt;</span> <span class="fl">0.001</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(finaldat, <span class="fu">aes</span>(<span class="at">x=</span>normal, <span class="at">y=</span>RCC)) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">color=</span><span class="st">"#999999"</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>sigdat, <span class="fu">aes</span>(<span class="at">x=</span>normal, <span class="at">y=</span>RCC), <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">shape=</span><span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ttestval_tr <span class="ot">&lt;-</span> ttestval <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rnames =</span> <span class="fu">c</span>(<span class="st">"pvalue"</span>, <span class="st">"tstat"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#column_to_rownames(var="rnames") |&gt; </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rnames) <span class="sc">|&gt;</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> rnames)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>finaldat <span class="ot">&lt;-</span> mymean2 <span class="sc">|&gt;</span> <span class="fu">left_join</span>(ttestval_tr, <span class="at">by=</span><span class="st">"name"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>finaldat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>참고로 아래 결과는 p-value 가 0.001 이하인 probe들을 표현한 결과로서 정확한 결과 도출을 위해서는 multiple testing correction을 수행 후 수정된 유의확율을 이용할 필요가 있습니다.</p>
-<p><img src="images/12/000024.png" class="img-fluid" width="500"></p>
+<p>유의한 데이터를 선별하고 가시화 합니다. 많은 test를 수행할 때 p-value를 그대로 사용할 경우 multiple testing 문제가 있어서 보정을 해주나 본 예제에서는 적용하지 않겠습니다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sigdat <span class="ot">&lt;-</span> finaldat <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pvalue <span class="sc">&lt;</span> <span class="fl">0.001</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">filename =</span> <span class="fu">system.file</span>(<span class="st">"extdata/GDS507.soft.gz"</span>,<span class="at">package=</span><span class="st">"GEOquery"</span>))</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>gds</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>eset <span class="ot">&lt;-</span> <span class="fu">GDS2eSet</span>(gds, <span class="at">do.log2=</span><span class="cn">TRUE</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>eset</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>myexp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">exprs</span>(eset))</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>myfeature <span class="ot">&lt;-</span> <span class="fu">fData</span>(eset)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>mypheno <span class="ot">&lt;-</span> <span class="fu">pData</span>(eset)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(myexp)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mypheno)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(myfeature)</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>?DESeqDataSetFromMatrix</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>myexp <span class="sc">|&gt;</span> </span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>name, <span class="at">y=</span>value)) <span class="sc">+</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>myexp <span class="sc">|&gt;</span> </span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(is.numeric, <span class="sc">~</span> . <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>name, <span class="at">y=</span>value)) <span class="sc">+</span></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>newmyexp <span class="ot">&lt;-</span> myexp <span class="sc">|&gt;</span> </span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(is.numeric, <span class="sc">~</span> . <span class="sc">&gt;</span> <span class="dv">0</span>)) </span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>myexpdeg <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> <span class="fu">as.matrix</span>(newmyexp), </span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> mypheno, </span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span>disease.state)</span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>myexpdeg <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> <span class="fu">as.matrix</span>(<span class="fu">round</span>(newmyexp)), </span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> mypheno, </span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span>disease.state)</span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(myexpdeg)</span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(myexpdeg)</span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>normcounts <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">counts</span>(dds, <span class="at">normalized =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(normcounts)</span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>normcounts <span class="sc">|&gt;</span> </span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>(dds)</span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>myres <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">"disease.state"</span>, <span class="st">"RCC"</span>, <span class="st">"normal"</span>))</span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myres)</span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(myres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>finaldat <span class="sc">|&gt;</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>normal, <span class="at">y=</span>RCC)) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">color=</span><span class="st">"#999999"</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>sigdat, <span class="fu">aes</span>(<span class="at">x=</span>normal, <span class="at">y=</span>RCC), <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">shape=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>아 결과는 p-value 가 0.001 이하인 probe들을 표현한 결과로서 정확한 결과 도출을 위해서는 multiple testing correction을 수행 후 수정된 유의확율을 이용할 필요가 있습니다.</p>
+<p><img src="images/image-1110079977.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+카이스트 강의
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ExpresionSet 클래스와 DESeq2를 활용한 DEG 실습 코드 이해</li>
+</ul>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">filename =</span> <span class="fu">system.file</span>(<span class="st">"extdata/GDS507.soft.gz"</span>,<span class="at">package=</span><span class="st">"GEOquery"</span>))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>gds</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>eset <span class="ot">&lt;-</span> <span class="fu">GDS2eSet</span>(gds, <span class="at">do.log2=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>eset</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>myexp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">exprs</span>(eset))</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>myfeature <span class="ot">&lt;-</span> <span class="fu">fData</span>(eset)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>mypheno <span class="ot">&lt;-</span> <span class="fu">pData</span>(eset)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(myexp)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mypheno)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(myfeature)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>?DESeqDataSetFromMatrix</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>myexp <span class="sc">|&gt;</span> </span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>name, <span class="at">y=</span>value)) <span class="sc">+</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>myexp <span class="sc">|&gt;</span> </span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(is.numeric, <span class="sc">~</span> . <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>name, <span class="at">y=</span>value)) <span class="sc">+</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>newmyexp <span class="ot">&lt;-</span> myexp <span class="sc">|&gt;</span> </span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(is.numeric, <span class="sc">~</span> . <span class="sc">&gt;</span> <span class="dv">0</span>)) </span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>myexpdeg <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> <span class="fu">as.matrix</span>(newmyexp), </span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> mypheno, </span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span>disease.state)</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>myexpdeg <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> <span class="fu">as.matrix</span>(<span class="fu">round</span>(newmyexp)), </span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> mypheno, </span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span>disease.state)</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(myexpdeg)</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(myexpdeg)</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>normcounts <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">counts</span>(dds, <span class="at">normalized =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(normcounts)</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>normcounts <span class="sc">|&gt;</span> </span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">|&gt;</span> </span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>(dds)</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>myres <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">"disease.state"</span>, <span class="st">"RCC"</span>, <span class="st">"normal"</span>))</span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myres)</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(myres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="summarizedexperiment" class="level2" data-number="8.5">
@@ -619,56 +648,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ExpressionSet은 일반적으로 행이 feature (유전자) 인 마이크로어레이 기반 실험 및 유전자 발현 데이터에 사용되었습니다. 그러나 유전체 분석을 위해서는 유전자 정보 외에도 유전체상의 위치 정보 등이 필요하며 이는 앞서 배운 GenomicRanges 형태의 데이터가 필요합니다. 따라서 최근에는 새로운 버전인 SummarizedExperiment class가 <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">SummarizedExperiment</a> 개발되어 사용되고 있습니다.</p>
 <p><img src="images/summarizedexp.PNG" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!requireNamespace("BiocManager", quietly = TRUE))</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#    install.packages("BiocManager")</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("airway")</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway, <span class="at">package=</span><span class="st">"airway"</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> airway</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>se</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>?RangedSummarizedExperiment </span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># assay data</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(se)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Row (features)</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(se)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Column (sample)</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(se)</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment-wide metadata</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!requireNamespace("BiocManager", quietly = TRUE))</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#    install.packages("BiocManager")</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("airway")</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway, <span class="at">package=</span><span class="st">"airway"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> airway</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>se</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>?RangedSummarizedExperiment </span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># assay data</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(se)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Row (features)</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(se)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Column (sample)</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(se)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment-wide metadata</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>SummarizedExperiment</code> 생성</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ncols <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(nrows <span class="sc">*</span> ncols, <span class="dv">1</span>, <span class="fl">1e4</span>), nrows)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>rowRanges <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"chr1"</span>, <span class="st">"chr2"</span>), <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">150</span>)),</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">IRanges</span>(<span class="fu">floor</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="fl">1e5</span>, <span class="fl">1e6</span>)), <span class="at">width=</span><span class="dv">100</span>),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">strand=</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"+"</span>, <span class="st">"-"</span>), <span class="dv">200</span>, <span class="cn">TRUE</span>),</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">feature_id=</span><span class="fu">sprintf</span>(<span class="st">"ID%03d"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>))</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>colData <span class="ot">&lt;-</span> <span class="fu">DataFrame</span>(<span class="at">Treatment=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"ChIP"</span>, <span class="st">"Input"</span>), <span class="dv">3</span>),</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">row.names=</span>LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">SummarizedExperiment</span>(<span class="at">assays=</span><span class="fu">list</span>(<span class="at">counts=</span>counts),</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">rowRanges=</span>rowRanges, <span class="at">colData=</span>colData)</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(se)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Row (regions-of-interest) data</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(se)</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Column (sample) data</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(se)</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment-wide metadata</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ncols <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(nrows <span class="sc">*</span> ncols, <span class="dv">1</span>, <span class="fl">1e4</span>), nrows)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>rowRanges <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"chr1"</span>, <span class="st">"chr2"</span>), <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">150</span>)),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">IRanges</span>(<span class="fu">floor</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="fl">1e5</span>, <span class="fl">1e6</span>)), <span class="at">width=</span><span class="dv">100</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">strand=</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"+"</span>, <span class="st">"-"</span>), <span class="dv">200</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">feature_id=</span><span class="fu">sprintf</span>(<span class="st">"ID%03d"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>))</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>colData <span class="ot">&lt;-</span> <span class="fu">DataFrame</span>(<span class="at">Treatment=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"ChIP"</span>, <span class="st">"Input"</span>), <span class="dv">3</span>),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">row.names=</span>LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">SummarizedExperiment</span>(<span class="at">assays=</span><span class="fu">list</span>(<span class="at">counts=</span>counts),</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">rowRanges=</span>rowRanges, <span class="at">colData=</span>colData)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(se)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Row (regions-of-interest) data</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(se)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Column (sample) data</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(se)</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment-wide metadata</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" alt="크리에이티브 커먼즈 라이선스" style="border-width:0"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.</p>
