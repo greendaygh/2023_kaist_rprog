@@ -265,6 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <ul>
 <li>Genbank 파일 다운로드, 서열정보, feature 정보 추출</li>
+<li><code>getSeq</code> 함수 사용</li>
 </ul>
 </div>
 </div>
@@ -285,6 +286,7 @@ Exercises
 </div>
 </div>
 <p>genbank 파일은 DNA 및 단백질 서열을 저장하는데 사용되는 서열 파일 포맷으로서 하나 이상의 시퀀스에 대한 정보와, 주석, 특정 서열 구간의 feature 정보와 메타 데이터도 포함합니다. NCBI에서 개발했으며 표준 DNA 및 단백질 서열 파일 형식으로 공공 데이터베이스 등 널리 사용되고 있습니다. R의 <code>genbankr</code> 패키지는 genbank 타입의 데이터를 읽는 <code>readGenBank</code> 함수를 제공합니다.</p>
+<p><code>GenBankRecord</code> 클래스 객체에 <code>getSeq</code> 함수 (<code>BSgenome</code> 패키지, 대부분 자동 로딩) 사용하면 whole genome 서열을 얻을 수 있습니다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(genbankr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,6 +424,8 @@ Note
 <div class="callout-body-container callout-body">
 <ul>
 <li>GenomicRanges 구조와 활용법 이해</li>
+<li>mcols, seqlengths</li>
+<li><code>getSeq</code> 함수 사용법(with <code>DNAString</code>, <code>GRanges</code> classes)</li>
 </ul>
 </div>
 </div>
@@ -476,19 +480,8 @@ Exercises
 <p>위 결과에서 chromosome 별로 항목을 나눈 Grange list를 만드시오</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercises
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>위에서 받은 <code>NC_045512.2</code>는 우한에서 발생한 코로나바이러스 서열에 대한 CDS 추출, 서열 비교, 가시화 등을 수행하시오</p>
-</div>
-</div>
+<p>앞서 <code>getSeq</code> 함수를 <code>GenBankRecord</code> 객체에 사용할 경우 whole genome 서열을 추출할 수 있음을 보였습니다. 특정 CDS 서열들을 추출할때도 <code>getSeq</code> 함수를 활용할 수 있습니다. 다음과 같이 <code>DNAString</code> 객체와 <code>GRanges</code> 객체를 입력 매개변수로 넣어줄 경우 <code>GRanges</code> 객체에 있는 범위의 CDS들의 서열을 모두 추출할 수 있습니다. 이 때 각 두 객체의 Sequence name은 같아야 합니다. 다음 예제는 <code>NC_045512.2</code> 서열에 대한 CDS 추출, 서열 비교, 가시화 등의 수행합니다.</p>
+<p>:::</p>
 </section>
 <section id="plyragnes" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="plyragnes"><span class="header-section-number">11.4</span> plyragnes</h2>
@@ -504,20 +497,34 @@ Exercises
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>pyranges 활용법 이해</li>
+<li>plyranges 활용법 이해</li>
+<li>plyranges 와 data.frame 변환 활용 이해 <code>mcols</code>, <code>as_granges</code></li>
 </ul>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyranges)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>covid19cds</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>gcr <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">letterFrequency</span>(cdsseqs, <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"C"</span>), <span class="at">as.prob=</span>T))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>covid19cds <span class="sc">%&gt;%</span> </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(gene, product) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gc =</span> gcr) <span class="co">#%&gt;%</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(grepl(pattern = "ORF", gene)) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>covid19cds</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>gcr <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">letterFrequency</span>(cdsseqs, <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"C"</span>), <span class="at">as.prob=</span>T))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>covid19cds <span class="sc">|&gt;</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(gene, product) <span class="sc">|&gt;</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">gc =</span> gcr) <span class="sc">|&gt;</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(gc <span class="sc">&lt;</span> <span class="fl">0.4</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>covid19cds <span class="sc">|&gt;</span> </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mcols</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">seqnames =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"chr1"</span>, <span class="st">"chr2"</span>), <span class="dv">7</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">strand =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"+"</span>, <span class="st">"-"</span>), <span class="dv">7</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">gc =</span> <span class="fu">runif</span>(<span class="dv">7</span>),</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">start =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_granges</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="rmdnote">
 <p><strong>Exercises</strong></p>
