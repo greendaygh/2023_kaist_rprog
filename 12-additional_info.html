@@ -8,7 +8,7 @@
 
 <meta name="author" content="Haseong">
 
-<title>R Programming for Engineering Biology (EB501, KAIST 2023) - 2&nbsp; Introduction</title>
+<title>R Programming for Engineering Biology (EB501, KAIST 2023) - 14&nbsp; Additional information</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +31,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-markdown.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./11-statistics-and-modeling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-additional_info.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Additional information</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -221,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-additional_info.html" class="sidebar-item-text sidebar-link">
+  <a href="./12-additional_info.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Additional information</span></span></a>
   </div>
 </li>
@@ -235,21 +200,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r-rstudio-introduction" id="toc-r-rstudio-introduction" class="nav-link active" data-scroll-target="#r-rstudio-introduction"><span class="header-section-number">2.1</span> R / RStudio Introduction</a></li>
-  <li><a href="#installing-r-rstudio" id="toc-installing-r-rstudio" class="nav-link" data-scroll-target="#installing-r-rstudio"><span class="header-section-number">2.2</span> Installing R / RStudio</a>
+  <li><a href="#bioconductor-installation-error" id="toc-bioconductor-installation-error" class="nav-link active" data-scroll-target="#bioconductor-installation-error"><span class="header-section-number">14.1</span> Bioconductor installation error</a>
   <ul class="collapse">
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">2.2.1</span> Installing R</a></li>
-  <li><a href="#installing-rstudio" id="toc-installing-rstudio" class="nav-link" data-scroll-target="#installing-rstudio"><span class="header-section-number">2.2.2</span> Installing RStudio</a></li>
-  <li><a href="#posit-cloud" id="toc-posit-cloud" class="nav-link" data-scroll-target="#posit-cloud"><span class="header-section-number">2.2.3</span> Posit Cloud</a></li>
-  </ul></li>
-  <li><a href="#rstudio-interface-and-keyboard-shortcuts" id="toc-rstudio-interface-and-keyboard-shortcuts" class="nav-link" data-scroll-target="#rstudio-interface-and-keyboard-shortcuts"><span class="header-section-number">2.3</span> RStudio Interface and Keyboard Shortcuts</a></li>
-  <li><a href="#starting-a-project" id="toc-starting-a-project" class="nav-link" data-scroll-target="#starting-a-project"><span class="header-section-number">2.4</span> Starting a Project</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">2.5</span> Getting Help</a></li>
-  <li><a href="#r-패키지와-데이터셋" id="toc-r-패키지와-데이터셋" class="nav-link" data-scroll-target="#r-패키지와-데이터셋"><span class="header-section-number">2.6</span> R 패키지와 데이터셋</a>
-  <ul class="collapse">
-  <li><a href="#패키지-설치-및-로드" id="toc-패키지-설치-및-로드" class="nav-link" data-scroll-target="#패키지-설치-및-로드"><span class="header-section-number">2.6.1</span> 패키지 설치 및 로드</a></li>
-  <li><a href="#설치-디렉토리-확인하기" id="toc-설치-디렉토리-확인하기" class="nav-link" data-scroll-target="#설치-디렉토리-확인하기"><span class="header-section-number">2.6.2</span> 설치 디렉토리 확인하기</a></li>
-  <li><a href="#패키지-데이터-사용하기" id="toc-패키지-데이터-사용하기" class="nav-link" data-scroll-target="#패키지-데이터-사용하기"><span class="header-section-number">2.6.3</span> 패키지 데이터 사용하기</a></li>
+  <li><a href="#error" id="toc-error" class="nav-link" data-scroll-target="#error"><span class="header-section-number">14.1.1</span> Error</a></li>
+  <li><a href="#조치" id="toc-조치" class="nav-link" data-scroll-target="#조치"><span class="header-section-number">14.1.2</span> 조치</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -259,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Additional information</span></h1>
 </div>
 
 
@@ -274,118 +228,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="r-rstudio-introduction" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="r-rstudio-introduction"><span class="header-section-number">2.1</span> R / RStudio Introduction</h2>
-<p>R은 통계학, 생물통계학, 유전학 등의 연구 분야에서 널리 사용되는 오픈소스 프로그래밍 언어입니다. S 언어에서 파생되었고, 데이터 분석 및 가시화 패키지들이 강점입니다. 최근 인공지능의 관심이 크게 증가하면서 python 언어의 수요가 더 증가하긴 했으나 특히 중,소규모의 데이터 전처리와 가시화, 통계분석 측면에서 여전히 많은 사용자를 확보하고 있는 언어입니다.</p>
-<p>R언어가 주목을 받고 두터운 사용자 층을 확보할 수 있게된 핵심 동력이 Rstudio 입니다. Rstudio를 개발한 Posit은 자체적으로 최고수준의 오픈소스 개발팀이 있으며 tidyverse, tidymodel, shiny 등의 데이터 분석 및 가시화 관련 주요 패키지를 개발하였고 정기적으로 conference 개최를 하면서 기술 보급의 핵심 역할을 하고 있습니다. R을 활용한 데이터 분석은 tidyverse 가 나오기 이전과 이후로 분리될 수 있을 정도로 tidyverse는 많은 변화와 효율향상을 이뤄냈습니다.</p>
+<section id="bioconductor-installation-error" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="bioconductor-installation-error"><span class="header-section-number">14.1</span> Bioconductor installation error</h2>
+<section id="error" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="error"><span class="header-section-number">14.1.1</span> Error</h3>
+<pre><code>'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details. Replacement repositories:     CRAN: https://cran.rstudio.com/
+Bioconductor version 3.18 (BiocManager 1.30.22), R 4.3.0 (2023-04-21 ucrt) Installing package(s) 'genbankr'
+경고: package ‘genbankr’ is not available for Bioconductor version '3.18'</code></pre>
 </section>
-<section id="installing-r-rstudio" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="installing-r-rstudio"><span class="header-section-number">2.2</span> Installing R / RStudio</h2>
-<p>R 사용을 위해서는 R 언어의 코어 프로그램을 먼저 설치하고 그 다음 R 언어용 IDE(Integrated Development Environment)인 RStudio 설치가 필요합니다. Rstudio는 R 언어를 위한 오픈소스 기반 통합개발환경(IDE)으로 R 프로그래밍을 위한 편리한 기능들을 제공해 줍니다.</p>
-<section id="installing-r" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">2.2.1</span> Installing R</h3>
+<section id="조치" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="조치"><span class="header-section-number">14.1.2</span> 조치</h3>
+<ol type="1">
+<li><p>R 버전 4.2.3 설치 (기존 R, Rstudio 설치된 것 상관없이 진행)</p>
 <ul>
-<li>R 공식 웹사이트 [https://www.r-project.org/]를 방문하세요. 왼쪽 메뉴 상단에 위치한 CRAN을 클릭합니다.</li>
-<li>목록에서 한국 미러 사이트 중 하나를 선택합니다.</li>
-<li>‘Windows용 R 다운로드’를 클릭한 다음 ’base’ 링크로 들어갑니다.</li>
-<li>’Windows용 R x.x.x 다운로드’를 클릭하여 실행 가능한 프로그램을 다운로드합니다.</li>
-<li>다운로드된 R-x.x.x-win.exe 파일을 로컬 컴퓨터에서 실행합니다 (2023년 11월 현재, R의 최신 버전은 4.3.2입니다).</li>
-<li>설치 프로그램의 지시에 따라 R 언어 소프트웨어 설치를 완료합니다.</li>
-</ul>
-</section>
-<section id="installing-rstudio" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="installing-rstudio"><span class="header-section-number">2.2.2</span> Installing RStudio</h3>
+<li><p>go to https://cran.r-project.org/mirrors.html and click KOREA https://cran.yu.ac.kr/</p></li>
+<li><p>click the followings “Download R for windows” &gt; “base” &gt; “Previous releases” &gt; “R 4.2.3”</p></li>
+<li><p>Download “R-4.2.3-win.exe” and install it</p></li>
+</ul></li>
+<li><p>Rstudio 실행 후 R version 변경</p>
 <ul>
-<li>Posit의 Rstudio 공식 [https://posit.co/] 웹사이트를 방문한 다음, 페이지 상단의 ’Products &gt; RStudio IDE’를 클릭합니다.</li>
-<li>‘Open Source Edition’ Free의 ’Download Rstudio Desktop’을 클릭합니다.</li>
-<li>’Download Rstudio’의 ’Download Rstudio desktop for windows’를 클릭하여 다운로드를 시작합니다.</li>
-<li>다운로드된 RStudio-x.x.x.exe 파일을 로컬 컴퓨터에서 실행합니다 (2023년 11월 현재, RStudio 데스크톱의 최신 버전은 2023.09입니다).</li>
-<li>설치 가이드를 따라 설치를 완료합니다.</li>
-</ul>
-</section>
-<section id="posit-cloud" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="posit-cloud"><span class="header-section-number">2.2.3</span> Posit Cloud</h3>
-<p>Posit Cloud는 클라우드에서 RStudio를 제공하여 사용자가 설치 및 설정 없이 브라우저에서 직접 RStudio를 사용할 수 있게 합니다.</p>
-<ul>
-<li>posit.cloud에 방문하여 사용자로 등록합니다 (Google 계정을 사용할 수 있습니다).</li>
-<li>로그인하고 ’Cloud Free’를 선택하여 시작합니다.</li>
-<li>이 환경에서는 1GB의 RAM과 1 CPU를 무료로 제공합니다.</li>
-</ul>
-</section>
-</section>
-<section id="rstudio-interface-and-keyboard-shortcuts" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="rstudio-interface-and-keyboard-shortcuts"><span class="header-section-number">2.3</span> RStudio Interface and Keyboard Shortcuts</h2>
-<p>RStudio는 코드 편집 창, 콘솔 창, 환경 및 파일 패널을 제공합니다.</p>
-<p><strong>주요 키보드 단축키</strong></p>
-<ul>
-<li>코드 실행: <code>Ctrl</code> + <code>Enter</code></li>
-<li>콘솔 창으로 이동: <code>Ctrl</code> + <code>2</code></li>
-<li>코드 편집 창으로 이동: <code>Ctrl</code> + <code>1</code></li>
-<li>저장: <code>Ctrl</code> + <code>S</code></li>
-<li>코드 주석 처리: <code>Ctrl</code> + <code>Shift</code> + <code>C</code></li>
-</ul>
-</section>
-<section id="starting-a-project" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="starting-a-project"><span class="header-section-number">2.4</span> Starting a Project</h2>
-<p>’RStudio’에서 ’파일 &gt; 새 프로젝트’로 가서 새 프로젝트를 시작할 수 있습니다.</p>
-<ul>
-<li>Hello World Example</li>
-<li>Create a new R file and execute the following code:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mystring <span class="ot">&lt;-</span> <span class="st">"Hello </span><span class="sc">\n</span><span class="st"> world!"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(mystring)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mystring)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="getting-help" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">2.5</span> Getting Help</h2>
-<p>R은 방대한 도움말 데이터를 제공하며, 다음과 같은 명령어로 특정 함수의 도움말과 예제를 찾아볼 수 있습니다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">"mean"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>?mean</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">"mean"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"mean"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>??mean</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package=</span><span class="st">"MASS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>RStudio 치트시트는 다양한 R 기능을 한눈에 알아볼 수 있게 만든 cheatsheet 형태의 문서를 참고할 수 있습니다. 자세한 내용은 <a href="https://posit.co/resources/cheatsheets/">Posit Cheatsheets</a>를 참조하세요.</p>
-</section>
-<section id="r-패키지와-데이터셋" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="r-패키지와-데이터셋"><span class="header-section-number">2.6</span> R 패키지와 데이터셋</h2>
-<p>R 패키지는 함수와 데이터셋의 묶음으로, 다른 사람들이 만들어 놓은 코드나 기능을 가져와 사용함으로써 코드 작성의 수고로움을 줄이고, 편리하고 검증된 함수(기능)를 빠르게 도입하여 사용할 수 있습니다. 예를 들어 <code>sd()</code> 함수는 <code>stats</code> 패키지에서 제공하는 함수로, 표준편차 계산을 위한 별도의 함수를 만들어서 사용할 필요가 없습니다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(UsingR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="패키지-설치-및-로드" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="패키지-설치-및-로드"><span class="header-section-number">2.6.1</span> 패키지 설치 및 로드</h3>
-<p>패키지는 CRAN 또는 Bioconductor와 같은 저장소에서 구할 수 있으며, 아래와 같이 RStudio를 이용하거나 콘솔창에서 <code>install.packages()</code> 함수를 이용할 수 있습니다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"UsingR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="설치-디렉토리-확인하기" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="설치-디렉토리-확인하기"><span class="header-section-number">2.6.2</span> 설치 디렉토리 확인하기</h3>
-<p>R 및 패키지의 설치 디렉토리는 다음 명령어로 확인할 수 있습니다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">path.package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="패키지-데이터-사용하기" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="패키지-데이터-사용하기"><span class="header-section-number">2.6.3</span> 패키지 데이터 사용하기</h3>
-<p>패키지 안에 포함된 데이터도 사용할 수 있으며 <code>data()</code> 함수를 이용해서 패키지 데이터를 사용자 작업공간에 복사해서 사용할 수 있습니다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(rivers)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rivers)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(rivers)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package=</span><span class="st">"UsingR"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HistData)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cavendish)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cavendish)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<hr>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" alt="크리에이티브 커먼즈 라이선스" style="border-width:0"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.</p>
+<li>Rstudio 실행, Tools &gt; Global Options &gt; General</li>
+</ul></li>
+</ol>
+<p><img src="images/image-1507209209.png" class="img-fluid" width="500"></p>
+<p><img src="images/image-893973970.png" class="img-fluid" width="500"></p>
+<ol start="3" type="1">
+<li><p>Rstudio 재시작 후 재설치</p>
+<p>if (!require(“BiocManager”, quietly = TRUE)) install.packages(“BiocManager”)</p>
+<p>BiocManager::install(“genbankr”)</p></li>
+</ol>
 
 
 </section>
@@ -627,14 +498,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">EB501</span></span>
+      <a href="./11-statistics-and-modeling.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Statistics and modeling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-markdown.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto and Markdown</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
