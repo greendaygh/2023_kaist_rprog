@@ -19,6 +19,12 @@ format:
 
 ## Reading and writing
 
+::: callout-tip
+## 카이스트 강의
+
+텍스트 파일과 엑셀파일 읽기 쓰기
+:::
+
 파일에 있는 데이터를 R로 읽어들이거나 쓰는 일은 일반적인 데이터 분석 과정에서 필수적일 수 있습니다. 본 강의에서는 일반적으로 사용하는 텍스트 파일과 엑셀파일을 활용하는 방법을 알아보겠습니다.
 
 ### Text file
@@ -83,6 +89,12 @@ plot(y=log(mydf2$brainwt), x=mydf2$sleep_total); abline(fit); text(50, 170, roun
 
 ### Excel file
 
+::: callout-tip
+## 카이스트 강의
+
+서열 데이터도 많이 다루나 공학생물학 관점에서는 플레이트 기반 데이터 수집과 분석 또한 많이 활용될 수 있음
+:::
+
 텍스트 파일 외에 엑셀파일은 `readxl` 이라는 R 패키지를 활용하여 읽거나 쓸 수 있습니다. 패키지는 다음과 같은 방법으로 설치할 수 있으며 `read_excel` 이라는 함수를 사용해서 데이터를 읽어들일 수 있습니다. `readxl`은 `tidyverse` 패키지들 중 하나입니다.
 
 ```{r}
@@ -145,13 +157,15 @@ ozone_complete4 <- subset(airquality, !is.na(ozone) & !is.na(solar.r), select=c(
 
 그러나 위 코드에서 순차적으로 수행되는 변환 과정 역시 여러 프로세스가 반복될 수록 복잡해지고 가독성이 떨어지는 것을 알 수 있습니다.
 
-**Exercises**
+::: callout-note
+## Exercises
 
 1)  airquality 데이터에서 `Temp`와 `Ozone` 변수로 이루어진 df라는 이름의 `data.frame`을 만드시오 (단 `NA`가 있는 샘플(열)은 모두 제외하시오)
 
 ```{r, echo=F}
 subset(airquality, !is.na(Temp) & !is.na(Ozone), select=c("Temp", "Ozone"))
 ```
+:::
 
 ## Merging and Split
 
@@ -221,7 +235,8 @@ newairquality <- data.frame(airquality, celsius)
 head(newairquality)
 ```
 
-**Exercises**
+::: callout-note
+## Exercises
 
 1)  다음 df 의 hour, minute, second로 나누어진 값들을 초 단위로 변환하여 seconds라는 변수에 저장한 후 기존 df에 추가한 df2 데이터셋을 만드시오 (`within` 함수 이용)
 
@@ -230,6 +245,7 @@ df <- data.frame(hour=c(4, 7, 1, 5, 8),
                  minute=c(46, 56, 44, 37, 39),
                  second=c(19, 45, 57, 41, 27))
 ```
+:::
 
 ## Babies example
 
@@ -358,7 +374,8 @@ toupper(ycount_top_char)
 
 ```
 
-**Exercises**
+::: callout-note
+## Exercises
 
 built-in 데이터셋 중 `state.abb` 은 미국의 50개 주에대한 축약어임.
 
@@ -367,6 +384,7 @@ built-in 데이터셋 중 `state.abb` 은 미국의 50개 주에대한 축약어
 2)  state.abb 중 위 x에 저장된 이름들을 빼고 y에 저장 하시오 (`match()` 또는 `%in%`사용)
 
 3)  state.abb에 사용된 알파벳의 갯수를 구하고 가장 많이 쓰인 알파벳을 구하시오 (`strsplit()`, `table()` 등 사용)
+:::
 
 ## apply
 
@@ -457,7 +475,8 @@ unlist(lapply(y, myfunc))
 
 TODO
 
-**Exercises**
+::: callout-note
+## Exercises
 
 다음은 앞에서 수행했던 `airquality` 데이터를 월별로 나눈 데이터셋임. 이 데이터셋을 이용하여 각 월별로 온도와 오존 농도의 평균값을 저장한 `data.frame` 형식의 데이터를 만들기 위하여 다음 단계별 과정에 적절한 코드를 작성하시오
 
@@ -487,6 +506,7 @@ ozone_func(df)
 3)  위 1), 2)와 같은 방법으로 `temp_func` 함수를 만들고 월별 `temp`의 평균값을 `temp_means`에 `vector` 형식으로 저장하시오.
 
 4)  위에서 구해진 두 변수값들을 이용하여 `air_means` 라는 이름의 `data.frame`으로 저장하시오
+:::
 
 ```{r, echo=F}
 
@@ -538,7 +558,8 @@ write.table(assays(gse93819)$exprs[1:5000,], "examples/gse93819_expression_value
 
 ```
 
-**Exercises**
+::: callout-note
+## Exercises
 
 1)  다음 코드를 이용해서 파일을 다운로드 하고 myexp에 저장하고 데이터의 구조 및 샘플들의 이름을 확인하시오
 
@@ -557,6 +578,7 @@ write.table(assays(gse93819)$exprs[1:5000,], "examples/gse93819_expression_value
 6.  myexpmean의 두 변수에 대한 차이를 구하여 mydiff 라는 변수에 저장하시오
 
 7.  mydiff의 값들에 대한 히스토그램 (막대그래프)을 그리시오
+:::
 
 ```{r, echo=F}
 

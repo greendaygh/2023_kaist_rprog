@@ -1,0 +1,158 @@
+---
+title: "Untitled"
+---
+
+
+```{r}
+
+x <- rnorm(100)
+x
+hist(x)
+
+mean(x)
+sd(x)
+
+```
+
+
+```{r}
+library(ggplot2)
+
+#x <- rnorm(100)
+#y <- x*2 + rnorm(100)
+#xy <- data.frame(x, y)
+#xy
+ggplot(xy, aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = lm, formula = y ~ x, se = FALSE)
+
+ggplot(xy, aes(x=x, y=y)) +
+  geom_point() +
+  #geom_smooth(method = lm, formula = y ~ x, se = FALSE) +
+  scale_x_continuous(limit=c(-4, 4)) +
+  scale_y_continuous(limit=c(-10, 10)) +
+  geom_abline(intercept = 0.026, slope = 2.11, lwd=2, color="blue")
+
+```
+
+
+### linear regression
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+
+x1 <- rnorm(1000)
+x2 <- rnorm(1000)
+y <- x1*2 + x2*4 + rnorm(1000)
+
+xy <- data.frame(x1, x2, y)
+
+# data spliting
+set.seed(123)
+# 3/4 of the data into the training set 
+xy_split <- initial_split(xy, prop = 3/4)
+
+train_data <- training(xy_split)
+test_data  <- testing(xy_split)
+```
+
+
+
+```{r}
+# model type
+model <- linear_reg() |> 
+  set_mode("regression") |> 
+  set_engine('lm')
+
+# recipe, the role of variables
+rec <- recipe(
+  y ~ .,
+  data = train_data
+  )  
+
+# estimate a preprocessing recipe
+rec |> 
+  prep()
+
+# display data
+rec |> 
+  prep() |> 
+  juice()
+
+rec |> 
+  step_mutate(x12 = x1*x2) |> 
+  prep() |> 
+  juice() |> 
+  boxplot()
+
+```
+
+
+```{r}
+
+# workflow 
+wk <- workflow() |> 
+  add_model(model) |> 
+  add_recipe(rec)
+
+# fit the model to the training data
+model_fit <- wk |> 
+  fit(data = train_data)
+
+# parameter estimates
+model_fit |> 
+  tidy()
+
+# model statistics (goodness of fit)
+model_fit |> 
+  glance()
+
+# apply the same recipe to the test set
+newd <- bake(prep(rec), test_data)
+
+# prediction
+model_fit |> 
+  predict(new_data = newd)
+  
+model_fit |> 
+  augment(new_data = newd) 
+
+model_fit |> 
+  augment(new_data = newd) |> 
+  dplyr::select(y, .pred) |> 
+  ggplot(aes(x=y, y=.pred)) +
+  geom_point()
+```
+
+### logistic regression (classification)
+
+```{r}
+library(ggplot2)
+x <- rnorm(100)
+y <- plogis(2*x + rnorm(100))
+y[y>0.5] <- 1
+y[y<0.5] <- 0
+
+xy <- data.frame(x, y)
+ggplot(xy, aes(x=x, y=y))+
+  geom_point() +
+  geom_smooth(method = "glm", method.args = list(family = "binomial"), se = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

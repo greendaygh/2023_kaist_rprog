@@ -18,6 +18,12 @@ tidyverse (https://www.tidyverse.org/)는 데이터 사이언스를 위한 R 기
 
 ## Tibble object type
 
+::: callout-tip
+## 카이스트 강의
+
+`tibble` 데이터 타입입 이해하기
+:::
+
 R은 20년 이상된 비교적 오랜 역사를 가진 언어로서 `data.frame` 형태의 데이터 타입이 가장 많이 사용되고 있습니다. 그러나 당시에는 유용했던 기능이 시간이 흐르면서 몇몇 단점들이 드러나는 문제로 기존 코드를 그대로 유지한채 package 형태로 단점을 보완한 새로운 형태의 `tibble` 오브젝트 형식을 만들어 냈습니다. 대부분의 R 코드는 여전히 `data.frame` 형태의 데이터 타입을 사용하고 있으나 `tidyverse`에서는 `tibble`이 기본으로 사용되는 것을 참고하시기 바랍니다.
 
 ```{r}
@@ -78,6 +84,12 @@ class(df2$x)
 
 ## Tidy data structure
 
+::: callout-tip
+## 카이스트 강의
+
+tidy 데이터 이해하기. Long형과 wide형 데이터 구분은 분석 목적에 따라서 달라질 수 있으나 가능하면 tidy 형태의 데이터로 분석하는 것이 중요함.
+:::
+
 데이터의 변수와 값을 구분하는 일은 적절한 데이터 분석을 위해 필수적인 과정입니다. 특히 복잡하고 사이즈가 큰 데이터일 경우는 더욱 중요할 수 있으나 경험에 의존해서 구분을 하는 것이 대부분 입니다. Tidy data는 이러한 변수와 값의 명확한 구분과 활용을 위한 데이터 구조중 하나 입니다 (Hadley Wickham. Tidy data. *The Journal of Statistical Software*, vol. 59, 2014).
 
 ![](images/07/notidy.JPG)
@@ -93,6 +105,8 @@ tidy data는 다음과 같은 특징이 있습니다.
 이러한 데이터 구조를 유지하는 것이 필요한 이유는 우선적으로 데이터 분석의 효율성에 있습니다. 또한 데이터를 일관성 있게 저장하고 관리하게 되면 그것을 다루는 분석 도구들을 배우고 활용하기 쉬워집니다. 특히 dplyr, ggplot2 및 tidyverse의 패키지들은 tidy 데이터 형태로 작동합니다. 그리고 변수들이 열에 배치되면서 백터연산을 지원하는 대부분의 R 함수들의 성능이 최대화 됩니다.
 
 ```{r}
+library(tidyverse)
+library(readxl)
 dat <- read_excel("examples/plate_reader.xls", sheet=1, skip = 0, col_names=T)
 
 head(dat)
@@ -111,7 +125,15 @@ Long형 데이터의 경우 ID, variable, value 세가지 변수만 기억하면
 
 ## Pipe operator
 
-tidyverse 패키지를 활용하기 위해서는 파이프 오퍼레이터의 이해가 필요합니다. 기존 magrittr에서 제공하던 `%>%` 파이프 오퍼레이터와 함께 최근 R 4.1.0부터 도입된 네이티브 파이프 오퍼레이터(**`|>`**)를 사용할 수 있습니다. 작동법은 간단히 파이프 오퍼레이터의 왼쪽 코드의 결과를 출력으로 받아 오른쪽 코드의 입력 (첫번째 파라미터의 값)으로 받아들이는 작동을 합니다 (**단축키: Shift+Ctrl+m**).
+::: callout-tip
+## 카이스트 강의
+
+파이프 오퍼레이터 사용법은 필수로 이해하며 기존 magrittr 오퍼레이터보다 네이티브 오퍼레이터 `|>` 추천
+:::
+
+tidyverse 패키지를 활용하기 위해서는 파이프 오퍼레이터의 이해가 필요합니다. 기존 magrittr에서 제공하던 `%>%` 파이프 오퍼레이터와 함께 최근 R 4.1.0부터 도입된 네이티브 파이프 오퍼레이터(**`|>`**)를 사용할 수 있습니다. 작동법은 간단히 파이프 오퍼레이터의 왼쪽 코드의 결과를 출력으로 받아 오른쪽 코드의 입력 (첫번째 파라미터의 값)으로 받아들이는 작동을 합니다 (**단축키: Shift+Ctrl+m**). Tools \> Global options \> Code 에서 아래와 같이 Use native pipe operator 에 체크해주면 위 단축키를 누를 때 native pipe operator가 표시됩니다.
+
+![](images/image-1155699604.png){width="457"}
 
 다음 예에서 보면 `sin(pi)` 와 같은 함수의 일반적인 사용법 대신 `pi |> sin()` 처럼 사용해도 똑같은 결과를 보여줍니다. `cos(sin(pi))`와 같이 여러 합수를 중첩하여 사용할 경우와 비교해서 코드의 가독성이나 효율 측면에서 크게 향상된 방법을 제공해 줍니다.
 
@@ -156,16 +178,30 @@ round(pi, digits=6)
 
 ## Pivoting
 
+::: callout-tip
+## 카이스트 강의
+
+Long형과 wide형 데이터를 서로 변환할 수 있는 방법 익히기
+:::
+
 일반적으로 얻어지는 데이터의 형태는 wide형이며 이를 Long형으로 변환하기 위해서는 `tidyverse` 패키지에 속한 `tidyr` 패키지의 `pivot_longer`와 `pivot_wider`를 사용합니다. 기존에는 `reshape2` 패키지의 `melt`함수와 그 반대의 경우 `dcast` 함수를 사용할 수 있으나 `tidyr` 패키지가 널리 사용됩니다. wide형 데이터를 long형으로 변환하거나 long형을 wide형으로 변환하는 작업을 pivoting 이라고 합니다.
 
 ![](images/07/wide2long.JPG)
 
 `airquality` 데이터는 wide형 데이터로도 볼 수 있고 long형 데이터로 볼 수도 있습니다. 앞에서 언급한 바와 같이 목적에 따라서 `airquality` 데이터가 wide형이 될 수 있고 long형도 될 수 있습니다. `airquality` 데이터는 특정 날짜에 `airquality` 지표 몇 가지에 대한 측정 값을 모아둔 데이터 입니다. 만약 Ozone과 Solar.R 만이 분석에 필요한 변수들이라면 두 개의 변수를 갖는 long형 데이터로 볼 수 도 있습니다.
 
+::: callout-tip
+## 카이스트 강의
+
+아래 내용은 tidy 구조의 데이터를 사용할 경우 변수 이름으로 용이하게 분석할 수 있는 예시를 보여줌
+
 ```{r}
 airquality
 myair2 <- airquality |> 
-  dplyr::select(Ozone, Solar.R, Day, Month)
+  dplyr::select(Ozone, Solar.R, Month, Day)
+
+myair2 |> 
+  pivot_longer()
 
 myair2
 ggplot(myair2, aes(x=Solar.R, y=Ozone)) +
@@ -174,6 +210,7 @@ ggplot(myair2, aes(x=Solar.R, y=Ozone)) +
 fit <- lm(myair2$Ozone~myair2$Solar.R)
 summary(fit)
 ```
+:::
 
 그러나 만약 각 컬럼을 airquality를 나타낼 수 있는 범주형 데이터 값으로 본다면 `airquality` 데이터는 wide형 데이터가 됩니다. 이 데이터를 long형으로 바꿀 경우 ID를 날짜로 하면 데이터들을 식별 할 수 있습니다. 그런데 날짜는 변수가 Month와 Day두 개로 나누어져 있으므로 다음과 같이 두 변수를 식별 변수로 (ID로) 사용 합니다. 확인을 위해 상위 5개의 데이터만 가지고 형 변환을 진행해 보겠습니다.
 
@@ -198,6 +235,12 @@ myair_long2
 myair_long3 <- myair |> 
   pivot_longer(!c(Month, Day))
 myair_long3
+
+myair_long <- pivot_longer(airquality, c("Ozone", "Solar.R", "Wind", "Temp"))
+myair_long |> 
+  mutate(id = paste(Month, Day, sep="-")) |> 
+  ggplot(aes(x=id, y=value, color=name)) +
+  geom_point()
 
 ```
 
@@ -224,6 +267,12 @@ myair_long |>
 
 `ggplot`을 이용한 그래프 작성에는 위와 같은 long형 데이터가 주로 사용됩니다. R을 이용한 데이터 가시화는 `dplyr` 패키지로 wide형 데이터를 편집하고 `pivot_longer` 함수로 long형 데이터로 변환 후 `ggplot`을 이용하는 방식으로 수행합니다. 두 데이터 포멧에 대한 좀 더 구체적인 내용은 다음 링크를 참고하시기 바랍니다. https://www.theanalysisfactor.com/wide-and-long-data/
 
+::: callout-tip
+## 카이스트 강의
+
+대부분 R 함수들이 벡터연산을 지원하고 있으며 컬럼을 변수로 하는 long형 데이터(컬럼이 변수)로 정형화해서 사용할 경우 R의 성능을 극대화 할 수 있음
+:::
+
 ```{r}
 library(ggplot2)
 data(msleep)
@@ -236,6 +285,126 @@ ggplot(msleep, aes(x = brainwt, y = sleep_total)) +
   ylab("Total Sleep Time (hours)") +
   ggtitle("Relationship between Brain Weight and Total Sleep Time")
 ```
+
+::: callout-tip
+## 카이스트 강의
+
+-   plate read 예제, 샘플: B, C, D, E, F, G 6종, 처리농도: 1\~6, 반복: 7\~12
+-   sample name 변수 추가
+-   농도 변수 추가
+-   반복 나타내는 dummy 변수 추가
+-   plot
+
+![](images/image-2050396319.png){width="450"}
+
+```{r}
+library(tidyverse)
+library(readxl)
+dat <- read_excel("examples/plate_reader.xls", sheet=1, skip = 0, col_names=T)
+dat
+
+newdat <- dat |> 
+  mutate(sample = stringr::str_sub(Well, 1, 1)) |> 
+  mutate(cpos = as.numeric(stringr::str_sub(Well, 2, -1))) |> 
+  mutate(conc = case_when(cpos < 7 ~ cpos,
+                          TRUE ~ cpos-6)
+  ) |> 
+  mutate(dupl = case_when(cpos < 7 ~ 1,
+                          TRUE ~ 2)) |> 
+  rename(od = "595nm_kk (A)",
+         gfp = "EGFP_sulim (Counts)") |> 
+  dplyr::select(sample, conc, dupl, od, gfp)
+
+
+newdat |> 
+  pivot_longer(c("od", "gfp")) |> 
+  mutate(id = paste(sample, conc, dupl, sep="-")) |> 
+  ggplot(aes(x=id, y=value, color=name)) +
+  geom_point() 
+
+
+```
+
+-   농도에 따른 OD, GFP 변화 plot 그리기
+-   처리농도: 0, 0.1, 0.5, 1, 5, 10
+-   문자형 값은 factor형으로 변환 필요
+
+```{r}
+conc_val <- c(0, 0.1, 0.5, 1, 5, 10)
+conc_val[1]
+
+newdat |> 
+  mutate(conc_new = conc_val[conc])
+
+newdat2 <- newdat |> 
+  mutate(conc = conc_val[conc]) |> 
+  mutate(dupl = as.character(dupl)) |> 
+  mutate_if(is.character, as.factor) 
+
+newdat2 |> 
+  ggplot(aes(x=conc, y=od)) +
+  geom_point()
+
+newdat2 |> 
+  ggplot(aes(x=conc, y=od, color=sample)) +
+  geom_point() 
+```
+
+-   growth data가 아님
+-   bargraph, x축 샘플/농도, y축 od
+
+```{r}
+
+newdat2 |> 
+  ggplot(aes(x=sample, y=od)) +
+  geom_bar()
+
+newdat2 |> 
+  ggplot(aes(x=sample, y=od)) +
+  geom_bar(stat = "identity")
+
+newdat2 |> 
+  ggplot(aes(x=sample, y=od, color=conc)) +
+  geom_bar(stat = "identity")
+
+newdat2 |> 
+  ggplot(aes(x=sample, y=od, fill=conc)) +
+  geom_bar(stat = "identity")
+
+newdat2 |> 
+  ggplot(aes(x=sample, y=od, fill=conc)) +
+  geom_bar(stat = "identity")
+
+
+newdat2 |> 
+  mutate(conc = as.factor(conc)) |> 
+  ggplot(aes(x=sample, y=od, fill=conc)) +
+  geom_bar(stat = "identity")
+
+newdat2 |> 
+  mutate(conc = as.factor(conc)) |> 
+  ggplot(aes(x=sample, y=od, fill=conc)) +
+  geom_bar(stat = "identity", position = "dodge")
+
+
+
+```
+
+-   다른색으로
+
+```{r}
+library(RColorBrewer)
+display.brewer.all()
+
+newdat2 |> 
+  mutate(conc = as.factor(conc)) |> 
+  ggplot(aes(x=sample, y=od, fill=conc)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_brewer(palette = "YlGnBu")
+
+
+```
+:::
 
 ## Separating and uniting
 
@@ -257,6 +426,12 @@ newairquality |>
 ```
 
 ## dplyr
+
+::: callout-tip
+## 카이스트 강의
+
+데이터를 다루기 위한 tidyverse의 가장 핵심이 되는 패키지. 여기서 사용되는 기술은 Genome 데이터 등 여러 타입의 데이터에 대해서 응용해서 활용되고 있음.
+:::
 
 `dplyr` (https://dplyr.tidyverse.org/) 은 `ggplot2`을 개발한 해들리위컴이 (Hadley Wickham) 중심이 되어 만들어 졌으며 ggplot2와 함께 tidyverse의 (https://www.tidyverse.org/) 핵심 패키지 입니다. `dplyr`은 데이터를 다루는 크기나 분석의 속도, 편의성을 향상시켜 새롭게 만들어놓은 패키지 입니다. 기존 `apply`와 같은 행렬 연산 기능과 `subset`, `split`, `group` 와 같은 행렬 편집 기능을 더하여 만들어진 도구라고 할 수 있습니다.
 
@@ -401,6 +576,49 @@ iris |>
   summarise(across(everything(), sd))
 
 ```
+
+::: callout-tip
+## 카이스트 강의
+
+- 96 플레이트 데이터를 읽고 각 반복에 대한 평균과 표준편차 계산 
+- 샘플별로 농도별로 막대그래프 그리고 표준편차 표시 
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+dat <- read_excel("examples/plate_reader.xls", sheet=1, skip = 0, col_names=T)
+conc_val <- c(0, 0.1, 0.5, 1, 5, 10)
+
+
+newdat <- dat |> 
+  mutate(sample = stringr::str_sub(Well, 1, 1)) |> 
+  mutate(cpos = as.numeric(stringr::str_sub(Well, 2, -1))) |> 
+  mutate(conc = case_when(cpos < 7 ~ cpos,
+                          TRUE ~ cpos-6)) |> 
+  mutate(dupl = case_when(cpos < 7 ~ 1,
+                          TRUE ~ 2)) |> 
+  rename(od = "595nm_kk (A)",
+         gfp = "EGFP_sulim (Counts)") |> 
+  dplyr::select(sample, conc, dupl, od, gfp)
+
+newdat |> 
+  mutate(conc_new = conc_val[conc])
+
+newdat2 <- newdat |> 
+  mutate(conc = as.factor(conc_val[conc])) |> 
+  mutate(dupl = as.character(dupl)) |> 
+  mutate_if(is.character, as.factor) |> 
+  group_by(sample, conc) |> 
+  summarise(m = mean(gfp), s = sd(gfp))
+
+
+newdat2 |> 
+  ggplot(aes(x=sample, y=m, fill = conc)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(mapping = aes(ymin = m-s, ymax = m+s), position = position_dodge2(width = 0.5, padding = 0.5))
+```
+:::
 
 ### join
 

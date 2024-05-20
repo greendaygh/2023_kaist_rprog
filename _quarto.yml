@@ -22,7 +22,13 @@ book:
     - 04-data-transformation-classic.qmd
     - 05-data-transformation-tidyverse.qmd
     - 06-bioconductor.qmd
-    - 07-Biostrings.qmd
+    - 07-highthroughput-data.qmd
+    - 08-Biostrings.qmd
+    - 09-toolsforsequences.qmd
+    - 10-tools-for-genome-analysis.qmd
+    - 99-homeworks.qmd
+    - 11-statistics-and-modeling.qmd
+    - 12-additional_info.qmd
 
 format:
   html:

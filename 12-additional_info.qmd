@@ -1,0 +1,41 @@
+---
+title: "Additional information"
+eval: false
+format: 
+  html: 
+    code-overflow: wrap
+---
+
+## Bioconductor installation error
+
+### Error
+
+    'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details. Replacement repositories:     CRAN: https://cran.rstudio.com/
+    Bioconductor version 3.18 (BiocManager 1.30.22), R 4.3.0 (2023-04-21 ucrt) Installing package(s) 'genbankr'
+    경고: package ‘genbankr’ is not available for Bioconductor version '3.18'
+
+### 조치
+
+1.  R 버전 4.2.3 설치 (기존 R, Rstudio 설치된 것 상관없이 진행)
+
+    -   go to https://cran.r-project.org/mirrors.html and click KOREA https://cran.yu.ac.kr/
+
+    -   click the followings "Download R for windows" \> "base" \> "Previous releases" \> "R 4.2.3"
+
+    -   Download "R-4.2.3-win.exe" and install it
+
+2.  Rstudio 실행 후 R version 변경
+
+    -   Rstudio 실행, Tools \> Global Options \> General
+
+![](images/image-1507209209.png){width="500"}
+
+![](images/image-893973970.png){width="500"}
+
+3.  Rstudio 재시작 후 재설치
+
+    if (!require("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
+    
+    BiocManager::install("genbankr")
+    
